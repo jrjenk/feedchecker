@@ -69,6 +69,7 @@ foreach ($jsondata["nodes"] as $node) {
 
 if ($nodeBadCount > 0) {
   sendToProwl(implode("\n", $messageLog),2);
+  sendToPushover(implode("\n", $messageLog),1);
   $messages = "Processed $nodeCount nodes with $nodeCount errors.\n";
   foreach ($messageLog as $message) {
     $messages = $messages . " - " . $message . "\n";
