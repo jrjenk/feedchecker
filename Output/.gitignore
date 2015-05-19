@@ -1,0 +1,5 @@
+# This directory is just a placehould for saving images that should
+# not be committed to Git.
+
+*
+!.gitignore

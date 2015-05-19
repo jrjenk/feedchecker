@@ -1,0 +1,45 @@
+# Begin COMPASS Cache Directory
+.sass-cache
+*.sass-cache
+
+# End COMPASS Cache Directory
+
+# Begin Mac OS X 
+.DS_Store
+.AppleDouble
+.LSOverride
+*~
+
+# Icon must ends with two \r.
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# End Mac OS X
+
+# Begin Dreamweaver added files
+_notes
+dwsync.xml
+
+#End Dreamweaver
+
+# Begin Sublime
+
+# workspace files are user-specific
+*.sublime-workspace
+
+# I don't want to push these up myself
+*.sublime-project
+
+# End Submlime
+
+# Begin PHPStorm
+.idea
+# End PHPStorm
+
