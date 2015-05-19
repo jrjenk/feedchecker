@@ -22,6 +22,7 @@ $feed = "http://news.ca.uky.edu/json/tarticles/all";
 $opts = array(
   'http'=>array(
     'method'=>"GET",
+    'user_agent' => "jrj_feed_checker 1.1",
     'header'=>"Accept-language: en\r\n",
     'timeout' => 60
   )
