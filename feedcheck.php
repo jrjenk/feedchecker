@@ -125,3 +125,27 @@ function writeLog($message) {
   fwrite($logHandle, $logMessage);
   fclose($logHandle);
 }
+
+function sendToPushover($message = "", $priority = 0) {
+  $postdata = http_build_query(
+    array(
+      "token" => "aNwkRdGACJ9Aho39XTMfrQF436oJTN",
+      "user" => "gGo7Cspio5JdEfHi81V78qJUDcwR5r",
+      "title" => "Feed Checker",
+      "priority" => $priority,
+      "sound" => "bugle",
+      "message" => $message
+    )
+  );
+
+  $opts = array('http' =>
+    array(
+      'method'  => 'POST',
+      'content' => $postdata
+    )
+  );
+
+  $context  = stream_context_create($opts);
+  $result = @file_get_contents('https://api.pushover.net/1/messages.json', false, $context);
+  writeLog("Sent Pushover Notification: " . $message);
+}
