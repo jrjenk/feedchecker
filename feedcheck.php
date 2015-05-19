@@ -5,6 +5,9 @@
  * Date: 5/18/15
  */
 
+// Set our TimeZone
+date_default_timezone_set('America/Kentucky/Louisville');
+
 // Whether we want to save the downloaded images.
 $saveFiles = false;
 
