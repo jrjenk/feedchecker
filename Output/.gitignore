@@ -1,5 +1,5 @@
-# This directory is just a placehould for saving images that should
-# not be committed to Git.
+# This directory is just a placeholder for saving images that should
+# not be commited to Git.
 
 *
 !.gitignore
