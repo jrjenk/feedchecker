@@ -31,9 +31,13 @@ $context = stream_context_create($opts);
 // Fetch the JSON feed, and convert it back into a JSON object.
 $file = file_get_contents($feed, false, $context);
 $jsondata = json_decode($file, true);
+$nodeCount = 0;
+$nodeBadCount = 0;
+$messageLog = [];
 
 foreach ($jsondata["nodes"] as $node) {
   if (!empty($node["node"]["field_main_image_fid"])) {
+    $nodeCount++;
     $fileData = null;
     $articleTitle = htmlspecialchars_decode($node["node"]["title"], ENT_QUOTES | ENT_HTML5);
     $remoteFileURL = $node["node"]["field_main_image_fid"];
@@ -43,7 +47,8 @@ foreach ($jsondata["nodes"] as $node) {
     $fileData = @file_get_contents($remoteFileURL, false, $context);
 
     if (empty($fileData)) {
-      sendToProwl("In " . $articleTitle . " the file " . $targetFile . " contained no data.", 2);
+      $nodeBadCount++;
+      $messageLog[] = "In " . $articleTitle . " the file " . $targetFile . " contained no data.";
     }
 
     if ($saveFiles) {
@@ -61,6 +66,16 @@ foreach ($jsondata["nodes"] as $node) {
   }
 }
 
+if ($nodeBadCount > 0) {
+  sendToProwl(implode("\n", $messageLog),2);
+  $messages = "Processed $nodeCount nodes with $nodeCount errors.\n";
+  foreach ($messageLog as $message) {
+    $messages = $messages . " - " . $message . "\n";
+  }
+  writeLog($messages);
+} else {
+  writeLog("Processed $nodeCount nodes with no errors.");
+}
 
 if ($notify) {
   sendToProwl("Cron is running (" . date('H:i') . ").", -2);
