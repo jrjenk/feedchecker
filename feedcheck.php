@@ -49,7 +49,7 @@ foreach ($jsondata["nodes"] as $node) {
     if ($saveFiles) {
       $targetFile = "/Users/jrjenk5/Development/FeedCheck/Output/" . $targetFile;
       // Create an output directory in the current working directory if needed
-      if (!file_exists("./Output")) {
+      if (!file_exists("/Users/jrjenk5/Development/FeedCheck/Output")) {
         mkdir("/Users/jrjenk5/Development/FeedCheck/Output", 0755);
       }
 
