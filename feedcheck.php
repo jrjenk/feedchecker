@@ -87,6 +87,7 @@ function sendToProwl($message = "", $priority = 2) {
 
   $context  = stream_context_create($opts);
   $result = @file_get_contents('https://api.prowlapp.com/publicapi/add', false, $context);
+  writeLog("Sent Prowl Notification: " . $message);
 }
 
 function writeLog($message) {
