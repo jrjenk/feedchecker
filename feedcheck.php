@@ -63,7 +63,6 @@ foreach ($jsondata["nodes"] as $node) {
 
 
 if ($notify) {
-  date_default_timezone_set('America/Kentucky/Louisville');
   sendToProwl("Cron is running (" . date('H:i') . ").", -2);
 }
 
