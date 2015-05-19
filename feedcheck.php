@@ -90,3 +90,23 @@ function sendToProwl($message = "", $priority = 2) {
   $context  = stream_context_create($opts);
   $result = @file_get_contents('https://api.prowlapp.com/publicapi/add', false, $context);
 }
+
+function writeLog($message) {
+  // Create Logs directory in the current working directory if needed
+  if (!file_exists("/Users/jrjenk5/Development/FeedCheck/Logs")) {
+    mkdir("/Users/jrjenk5/Development/FeedCheck/Logs", 0755);
+  }
+  $logFile = "/Users/jrjenk5/Development/FeedCheck/Logs/" . date('Y-m-d') . ".log";
+
+  if (file_exists($logFile)) {
+    $logHandle = fopen($logFile, "a");
+  } else {
+    $logHandle = fopen($logFile, "a");
+    fwrite($logHandle, "Date,Time,Message\n");
+  }
+
+  $logMessage = date('Y-m-d') . ", " . date('H:i:s') . ", " . $message . "\n";
+
+  fwrite($logHandle, $logMessage);
+  fclose($logHandle);
+}
