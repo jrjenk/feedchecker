@@ -1,0 +1,5 @@
+# This directory is just a placeholder for saving logss that should
+# not be commited to Git.
+
+*
+!.gitignore
