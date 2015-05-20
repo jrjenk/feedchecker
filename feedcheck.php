@@ -77,6 +77,11 @@ if ($nodeBadCount > 0) {
   writeLog($messages);
 } else {
   writeLog("Processed $nodeCount nodes with no errors.");
+  $currentHour = date("H");
+  $currentMinute = date("i");
+  if ((strcmp($currentMinute, "00") === 0) && in_array($currentHour, array("08","12","19"))) {
+    sendToPushover("Processed $nodeCount nodes with no errors.", -1);
+  }
 }
 
 if ($notify) {
