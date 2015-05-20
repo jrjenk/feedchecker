@@ -148,5 +148,11 @@ function sendToPushover($message = "", $priority = 0) {
 
   $context  = stream_context_create($opts);
   $result = @file_get_contents('https://api.pushover.net/1/messages.json', false, $context);
-  writeLog("Sent Pushover Notification: " . $message);
+  $objResult = json_decode($result, true);
+  if ($objResult["status"] == 1) {
+    writeLog("Sent Pushover Notification (" . $objResult["request"] . "): " . $message);
+  } else {
+      writeLog("Pushover Notification (" . $objResult["request"] . ") Failed with errors : " . $objResult["errors"] . "\nPayload:" . $message);
+  }
+
 }
