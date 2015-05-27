@@ -43,3 +43,8 @@ dwsync.xml
 .idea
 # End PHPStorm
 
+
+
+# Project Specific Ignores
+
+news-articles.sql3
